@@ -26,3 +26,19 @@ class LoginForm(FlaskForm):
     username = StringField(label='User Name:', validators=[DataRequired()])
     password = PasswordField(label='Password:', validators=[DataRequired()])
     submit = SubmitField(label='Sign In')
+
+
+class PurchaseItemForm(FlaskForm):
+    submit = SubmitField(label='Purchase Item!')
+
+
+class SellItemForm(FlaskForm):
+    submit = SubmitField(label='Sell Item!')
+
+
+class AddItemForm(FlaskForm):
+    name = StringField(label='Name:', validators=[DataRequired()])
+    price = StringField(label='Price:', validators=[DataRequired()])
+    barcode = StringField(label='Barcode:', validators=[DataRequired()])
+    description = StringField(label='Description:', validators=[DataRequired()])
+    submit = SubmitField(label='Add Item')

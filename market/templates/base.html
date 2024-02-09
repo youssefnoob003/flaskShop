@@ -41,7 +41,7 @@
                     <a class="nav-link" href="#">{{ current_user.username }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Logout</a>
+                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
                 </li>
             </ul>
         {% else %}
@@ -60,7 +60,7 @@
 {% with message = get_flashed_messages(with_categories=true) %}
     {% if message %}
         {% for category, message in message %}
-            <div class="alert alert-{{ category }}">
+            <div style="text-align: center" class="alert alert-{{ category }}">
                 <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

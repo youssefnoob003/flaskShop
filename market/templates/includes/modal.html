@@ -1,0 +1,82 @@
+<style>
+  .modal-content {
+    background-color: #212121;
+  }
+</style>
+
+<div class="modal fade" id="moreInfoModal-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="moreInfoModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          {{ item.name }}
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{ item.description }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="purchaseModal-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="purchaseModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="purchaseModalLabel">
+          {{ item.name }}
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" style="color: white">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" style="text-align: center">
+          {{ purchase_item_form.hidden_tag() }}
+          <h4>You'll be buying this item for {{ item.price }} coins.</h4>
+          <h6>Are you sure you want to buy this item?</h6>
+          <br>
+          <input id="purchased_item" name="purchased_item" type="hidden" value="{{item.name}}">
+          {{ purchase_item_form.submit(class="btn btn-outline-success btn-block") }}
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="sellModal-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="sellModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="sellModalLabel">
+          {{ item.name }}
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" style="color: white">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" style="text-align: center">
+          {{ purchase_item_form.hidden_tag() }}
+          <h4>You'll be selling this item for {{ item.price }} coins.</h4>
+          <h6>Are you sure you want to sell this item?</h6>
+          <br>
+          <input id="selled_item" name="selled_item" type="hidden" value="{{item.name}}">
+          {{ sell_item_form.submit(class="btn btn-outline-danger btn-block") }}
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

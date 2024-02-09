@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.String(length=60), nullable=False)
     budget = db.Column(db.Integer(), nullable=False, default=1000)
     items = db.relationship('Item', backref='owned_user', lazy=True)
+    is_admin = db.Column(db.Boolean(), nullable=False, default=True)
 
     @property
     def password(self):
@@ -32,6 +33,19 @@ class User(db.Model, UserMixin):
 
     def check_password_correction(self, attempted_password):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
+
+    def can_purchase(self, item_obj):
+        return self.budget >= item_obj.price
+
+    def buy(self, item_obj):
+        self.budget -= item_obj.price
+        item_obj.owner = self.id
+        db.session.commit()
+
+    def sell(self, item_obj):
+        self.budget += item_obj.price
+        item_obj.owner = None
+        db.session.commit()
 
     def __repr__(self):
         return f'User {self.username}'
